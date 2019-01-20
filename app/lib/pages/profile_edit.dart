@@ -33,7 +33,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 24.0),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -43,8 +43,10 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                   CircleAvatar(
                     radius: 64.0,
                     backgroundColor: Colors.blue,
+                    backgroundImage: AssetImage('images/human.png'),
                   ),
                   Positioned(
+                    top: 80,
                     left: 80,
                     child: IconButton(
                       icon: Icon(Icons.add_circle),
@@ -81,37 +83,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: this.currentPage, // Sincroniza com a página atual
-        type: BottomNavigationBarType.shifting,
-        onTap: (int index) {
-          setState(() {
-            this.currentPage = index;
-          });
-        },
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            title: Text('Favoritos'),
-            backgroundColor: Colors.pink,
-            icon: Icon(Icons.favorite),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Pesquisa'),
-            backgroundColor: Colors.green,
-            icon: Icon(Icons.search),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Agenda'),
-            backgroundColor: Colors.orange,
-            icon: Icon(Icons.calendar_today),
-          ),
-          BottomNavigationBarItem(
-            title: Text('Perfil'),
-            backgroundColor: Colors.blue,
-            icon: Icon(Icons.account_circle),
-          ),
-        ],
       ),
     );
   }
