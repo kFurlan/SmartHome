@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smarthome/pages/profile_info.dart';
+import 'package:smarthome/pages/room_info.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,18 +23,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var currentPageIndex = 1;
+  var currentPageIndex = 0;
 
   List<Widget> pages;
   Widget currentPage;
 
+  RoomInfoPage roomInfoPage;
   ProfileInfoPage profileInfoPage;
 
   @override
   void initState() {
+    this.roomInfoPage = RoomInfoPage();
     this.profileInfoPage = ProfileInfoPage();
     this.pages = [
-      Placeholder(),
+      roomInfoPage,
       profileInfoPage,
     ];
     super.initState();
@@ -53,9 +56,9 @@ class _HomePageState extends State<HomePage> {
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text('Placeholder'),
+            title: Text('Cômodo'),
             backgroundColor: Colors.orange,
-            icon: Icon(Icons.calendar_today),
+            icon: Icon(Icons.airline_seat_individual_suite),
           ),
           BottomNavigationBarItem(
             title: Text('Perfil'),
