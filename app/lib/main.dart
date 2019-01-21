@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         },
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            title: Text('Cômodo'),
+            title: Text('Cômodos'),
             backgroundColor: Colors.orange,
             icon: Icon(Icons.airline_seat_individual_suite),
           ),
