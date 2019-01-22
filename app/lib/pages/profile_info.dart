@@ -11,9 +11,9 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Padding(
+    return SafeArea(
+      child: Scaffold(
+          body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0),
         child: ListView(
           children: <Widget>[
@@ -23,12 +23,10 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
                 leading: CircleAvatar(
                   radius: 32.0,
                   backgroundImage: AssetImage('images/human.png'),
-                  backgroundColor: Colors.blue,
                 ),
                 trailing: OutlineButton(
                   child: Text(
                     'EDITAR PERFIL',
-                    style: TextStyle(color: Colors.blueAccent),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -51,7 +49,7 @@ class _ProfileInfoPageState extends State<ProfileInfoPage> {
             Divider()
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

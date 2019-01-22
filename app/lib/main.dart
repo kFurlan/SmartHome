@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: this.pages[this.currentPageIndex], // Sincroniza com a página atual
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: this.currentPageIndex, // Sincroniza com a página atual
         type: BottomNavigationBarType.shifting,
@@ -57,7 +58,7 @@ class _HomePageState extends State<HomePage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             title: Text('Cômodos'),
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.blue,
             icon: Icon(Icons.airline_seat_individual_suite),
           ),
           BottomNavigationBarItem(
