@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smarthome/state/room_bloc.dart';
+import 'package:smarthome/state/room_event.dart';
 
 class RoomCreatePage extends StatefulWidget {
   @override
@@ -6,7 +9,15 @@ class RoomCreatePage extends StatefulWidget {
 }
 
 class _RoomCreatePageState extends State<RoomCreatePage> {
+  RoomBloc _roomBloc;
   String dropDownValue;
+
+  @override
+  void initState() {
+    _roomBloc = BlocProvider.of<RoomBloc>(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +84,14 @@ class _RoomCreatePageState extends State<RoomCreatePage> {
               child: RaisedButton(
                 padding: EdgeInsets.all(16),
                 child: Text('CADASTRAR'),
-                onPressed: () {},
+                onPressed: () {
+                  _roomBloc.dispatch(
+                    InsertRoom(name: 'Quarto das crianças', type: 'Quarto'),
+                  );
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
+                },
               ),
             ),
           ],

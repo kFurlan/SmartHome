@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smarthome/pages/profile_edit.dart';
+import 'package:smarthome/pages/profile/profile_edit_page.dart';
 
 class ProfileInfoPage extends StatefulWidget {
   @override

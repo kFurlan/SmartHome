@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smarthome/pages/profile_info.dart';
-import 'package:smarthome/pages/room_info.dart';
+import 'package:smarthome/pages/profile/profile_info_page.dart';
+import 'package:smarthome/pages/room/room_info_page.dart';
+import 'package:smarthome/state/room_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,15 +27,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var currentPageIndex = 0;
 
+  RoomBloc _roomBloc;
+
   List<Widget> pages;
   Widget currentPage;
 
-  RoomInfoPage roomInfoPage;
-  ProfileInfoPage profileInfoPage;
+  Widget roomInfoPage;
+  Widget profileInfoPage;
 
   @override
   void initState() {
-    this.roomInfoPage = RoomInfoPage();
+    this._roomBloc = RoomBloc();
+    this.roomInfoPage = BlocProvider<RoomBloc>(
+      bloc: this._roomBloc,
+      child: RoomInfoPage(),
+    );
     this.profileInfoPage = ProfileInfoPage();
     this.pages = [
       roomInfoPage,
