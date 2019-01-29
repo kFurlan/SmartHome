@@ -24,12 +24,6 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
   }
 
   @override
-  void dispose() {
-    _roomBloc.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

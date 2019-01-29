@@ -53,27 +53,27 @@ class _RoomCreatePageState extends State<RoomCreatePage> {
                 },
                 items: <DropdownMenuItem<String>>[
                   DropdownMenuItem(
-                    value: 'Quarto',
+                    value: 'quarto',
                     child: Text('Quarto'),
                   ),
                   DropdownMenuItem(
-                    value: 'Banheiro',
+                    value: 'banheiro',
                     child: Text('Banheiro'),
                   ),
                   DropdownMenuItem(
-                    value: 'Garagem',
+                    value: 'garagem',
                     child: Text('Garagem'),
                   ),
                   DropdownMenuItem(
-                    value: 'Sala de estar',
+                    value: 'sala_de_estar',
                     child: Text('Sala de estar'),
                   ),
                   DropdownMenuItem(
-                    value: 'Cozinha',
+                    value: 'cozinha',
                     child: Text('Cozinha'),
                   ),
                   DropdownMenuItem(
-                    value: 'Escritório',
+                    value: 'escritorio',
                     child: Text('Escritório'),
                   )
                 ],

@@ -78,4 +78,10 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _roomBloc.dispose();
+    super.dispose();
+  }
 }
