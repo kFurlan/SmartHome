@@ -9,11 +9,10 @@ class RoomCreatePage extends StatefulWidget {
 }
 
 class _RoomCreatePageState extends State<RoomCreatePage> {
+  RoomBloc _roomBloc;
   String _dropDownValue;
   String _textFormValue;
   final _roomCreateKey = GlobalKey<FormState>();
-
-  RoomBloc _roomBloc;
 
   @override
   void initState() {
@@ -47,7 +46,7 @@ class _RoomCreatePageState extends State<RoomCreatePage> {
                   maxLength: 60,
                   validator: (String value) {
                     if (value == null || value.isEmpty)
-                      return "O nome do cômodo não pode estar vazio.";
+                      return "O nome do cômodo não pode estar vazio";
                   },
                   onSaved: (String value) {
                     this._textFormValue = value;

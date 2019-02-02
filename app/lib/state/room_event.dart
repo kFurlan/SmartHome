@@ -1,7 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 import 'package:smarthome/models/room_model.dart';
-import 'package:uuid/uuid.dart';
 
 abstract class RoomEvent extends Equatable {
   RoomEvent([List props = const []]) : super(props);
@@ -17,7 +16,7 @@ class InsertRoom extends RoomEvent {
 }
 
 class DeleteRoom extends RoomEvent {
-  final Uuid id;
+  final String id;
   DeleteRoom({
     @required this.id,
   }) : super([id]);

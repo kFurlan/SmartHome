@@ -17,9 +17,11 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
       final model =
           RoomModel(id: Uuid().v1(), name: event.name, type: event.type);
       rooms.add(model);
-    }
-    if (event is DeleteRoom) {
+    } else if (event is DeleteRoom) {
       rooms.removeWhere((element) => element.id == event.id);
+    } else if (event is EditRoom) {
+      final where = rooms.indexWhere((element) => element.id == event.model.id);
+      rooms[where] = event.model;
     }
     if (rooms.isNotEmpty) {
       yield RoomLoaded();

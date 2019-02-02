@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:smarthome/models/room_model.dart';
 import 'package:smarthome/pages/room/room_create_page.dart';
@@ -110,7 +108,10 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => RoomEditPage(),
+                            builder: (context) => BlocProvider<RoomBloc>(
+                                  bloc: _roomBloc,
+                                  child: RoomEditPage(model: model),
+                                ),
                           ),
                         );
                       },
