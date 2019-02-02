@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:smarthome/models/room_model.dart';
 import 'package:smarthome/pages/room/room_create_page.dart';
 import 'package:smarthome/pages/room/room_edit_page.dart';
 
@@ -37,7 +38,9 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => BlocProvider<RoomBloc>(
-                      bloc: _roomBloc, child: RoomCreatePage()),
+                        bloc: _roomBloc,
+                        child: RoomCreatePage(),
+                      ),
                 ),
               );
             },
@@ -58,7 +61,7 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
             return ListView.builder(
               itemCount: _roomBloc.rooms.length,
               itemBuilder: (BuildContext context, index) {
-                return _buildRoomListItem(index, context);
+                return _buildRoomListItem(_roomBloc.rooms[index], context);
               },
             );
           }
@@ -67,7 +70,7 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
     );
   }
 
-  Widget _buildRoomListItem(int index, BuildContext context) {
+  Widget _buildRoomListItem(RoomModel model, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: Card(
@@ -75,40 +78,42 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
         child: Column(
           children: <Widget>[
             Container(
+              height: 80.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Flexible(
-                    child: Image.network('https://lorempixel.com/400/400'),
-                  ),
+                  FittedBox(child: Placeholder()),
                   Expanded(
                     flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Quarto ${_roomBloc.rooms[index].name}',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text('${Random().nextInt(6)} de 6 dispositivos ligados')
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            '${model.name}',
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                          Text('${model.type}'),
+                        ],
+                      ),
                     ),
                   ),
-                  Flexible(
-                    child: ButtonTheme.bar(
-                      child: OutlineButton(
-                        child: Text(
-                          'EDITAR',
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RoomEditPage(),
-                            ),
-                          );
-                        },
+                  ButtonTheme.bar(
+                    child: OutlineButton(
+                      child: Text(
+                        'EDITAR',
                       ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RoomEditPage(),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

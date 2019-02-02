@@ -9,12 +9,15 @@ class RoomCreatePage extends StatefulWidget {
 }
 
 class _RoomCreatePageState extends State<RoomCreatePage> {
+  String _dropDownValue;
+  String _textFormValue;
+  final _roomCreateKey = GlobalKey<FormState>();
+
   RoomBloc _roomBloc;
-  String dropDownValue;
 
   @override
   void initState() {
-    _roomBloc = BlocProvider.of<RoomBloc>(context);
+    this._roomBloc = BlocProvider.of<RoomBloc>(context);
     super.initState();
   }
 
@@ -33,68 +36,92 @@ class _RoomCreatePageState extends State<RoomCreatePage> {
         ),
         elevation: 0.0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Nome do Cômodo'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Form(
+            key: _roomCreateKey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  maxLength: 60,
+                  validator: (String value) {
+                    if (value == null || value.isEmpty)
+                      return "O nome do cômodo não pode estar vazio.";
+                  },
+                  onSaved: (String value) {
+                    this._textFormValue = value;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Nome do Cômodo',
+                  ),
+                ),
+                DropdownButtonFormField<String>(
+                  value: _dropDownValue,
+                  validator: (String value) {
+                    if (value == null || value.isEmpty)
+                      return "Selecione um tipo de cômodo";
+                  },
+                  hint: Text('Tipo de cômodo'),
+                  onChanged: (String value) {
+                    setState(() {
+                      this._dropDownValue = value;
+                    });
+                  },
+                  items: <DropdownMenuItem<String>>[
+                    DropdownMenuItem(
+                      value: 'quarto',
+                      child: Text('Quarto'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'banheiro',
+                      child: Text('Banheiro'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'garagem',
+                      child: Text('Garagem'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'sala_de_estar',
+                      child: Text('Sala de estar'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'cozinha',
+                      child: Text('Cozinha'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'escritorio',
+                      child: Text('Escritório'),
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      padding: EdgeInsets.all(16),
+                      child: Text('CADASTRAR'),
+                      onPressed: () {
+                        if (_roomCreateKey.currentState.validate()) {
+                          _roomCreateKey.currentState.save();
+                          _roomBloc.dispatch(
+                            InsertRoom(
+                              name: this._textFormValue,
+                              type: this._dropDownValue,
+                            ),
+                          );
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          }
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: DropdownButton<String>(
-                isExpanded: true,
-                value: dropDownValue,
-                hint: Text('Tipo de cômodo'),
-                onChanged: (String value) {
-                  setState(() {
-                    this.dropDownValue = value;
-                  });
-                },
-                items: <DropdownMenuItem<String>>[
-                  DropdownMenuItem(
-                    value: 'quarto',
-                    child: Text('Quarto'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'banheiro',
-                    child: Text('Banheiro'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'garagem',
-                    child: Text('Garagem'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'sala_de_estar',
-                    child: Text('Sala de estar'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'cozinha',
-                    child: Text('Cozinha'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'escritorio',
-                    child: Text('Escritório'),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: RaisedButton(
-                padding: EdgeInsets.all(16),
-                child: Text('CADASTRAR'),
-                onPressed: () {
-                  _roomBloc.dispatch(
-                    InsertRoom(name: 'Quarto das crianças', type: 'Quarto'),
-                  );
-                  if (Navigator.canPop(context)) {
-                    Navigator.pop(context);
-                  }
-                },
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
