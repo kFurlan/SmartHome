@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smarthome/models/room_model.dart';
+import 'package:smarthome/models/room.dart';
 import 'package:smarthome/state/room_bloc.dart';
 import 'package:smarthome/state/room_event.dart';
 
 class RoomEditPage extends StatefulWidget {
-  final RoomModel model;
+  final Room model;
   const RoomEditPage({@required this.model});
 
   @override
@@ -111,7 +111,7 @@ class RoomEditPageState extends State<RoomEditPage> {
                       onPressed: () {
                         if (_roomCreateKey.currentState.validate()) {
                           _roomCreateKey.currentState.save();
-                          final _model = RoomModel(
+                          final _model = Room.withId(
                               id: widget.model.id,
                               name: _roomName,
                               type: _roomType);

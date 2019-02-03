@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smarthome/models/room_model.dart';
+import 'package:smarthome/models/room.dart';
 import 'package:smarthome/pages/room/room_create_page.dart';
 import 'package:smarthome/pages/room/room_edit_page.dart';
 
@@ -68,7 +68,7 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
     );
   }
 
-  Widget _buildRoomListItem(RoomModel model, BuildContext context) {
+  Widget _buildRoomListItem(Room model, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: Card(
