@@ -4,9 +4,9 @@ import 'package:smarthome/pages/room/room_create_page.dart';
 import 'package:smarthome/pages/room/room_edit_page.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smarthome/state/room_state.dart';
-import 'package:smarthome/state/room_bloc.dart';
-import 'package:smarthome/state/room_event.dart';
+import 'package:smarthome/state/room/room_state.dart';
+import 'package:smarthome/state/room/room_bloc.dart';
+import 'package:smarthome/state/room/room_event.dart';
 
 class RoomInfoPage extends StatefulWidget {
   @override
@@ -57,10 +57,24 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
             );
           } else if (state is RoomLoaded) {
             return ListView.builder(
+              shrinkWrap: true,
               itemCount: _roomBloc.rooms.length,
               itemBuilder: (BuildContext context, index) {
-                return _buildRoomListItem(_roomBloc.rooms[index], context);
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 4.0, horizontal: 2.0),
+                  child: _buildRoomListItem(_roomBloc.rooms[index], context),
+                );
               },
+            );
+          } else {
+            return Center(
+              child: Text(
+                'Erro ao carregar os cômodos.',
+                style: TextStyle(
+                  fontSize: 48.0,
+                ),
+              ),
             );
           }
         },
@@ -69,37 +83,39 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
   }
 
   Widget _buildRoomListItem(Room model, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      child: Card(
-        elevation: 0.0,
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 80.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FittedBox(child: Placeholder()),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '${model.name}',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                          Text('${model.type}'),
-                        ],
-                      ),
+    return Card(
+      elevation: 2.0,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 90.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FittedBox(
+                  child: Placeholder(),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          '${model.name}',
+                          style: TextStyle(fontSize: 24.0),
+                        ),
+                        Text('${model.type}'),
+                      ],
                     ),
                   ),
-                  ButtonTheme.bar(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: ButtonTheme.bar(
                     child: OutlineButton(
                       child: Text(
                         'EDITAR',
@@ -117,11 +133,11 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
                       },
                     ),
                   ),
-                ],
-              ),
-            )
-          ],
-        ),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

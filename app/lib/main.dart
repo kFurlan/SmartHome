@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smarthome/pages/profile/profile_info_page.dart';
 import 'package:smarthome/pages/room/room_info_page.dart';
-import 'package:smarthome/state/room_bloc.dart';
+import 'package:smarthome/state/room/room_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() => runApp(MyApp());

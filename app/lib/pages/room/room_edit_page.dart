@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smarthome/models/room.dart';
-import 'package:smarthome/state/room_bloc.dart';
-import 'package:smarthome/state/room_event.dart';
+import 'package:smarthome/state/room/room_bloc.dart';
+import 'package:smarthome/state/room/room_event.dart';
 
 class RoomEditPage extends StatefulWidget {
   final Room model;
@@ -121,6 +121,26 @@ class RoomEditPageState extends State<RoomEditPage> {
                           if (Navigator.canPop(context)) {
                             Navigator.pop(context);
                           }
+                        }
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      padding: EdgeInsets.all(16),
+                      color: Colors.red,
+                      textColor: Colors.white,
+                      child: Text('EXCLUIR'),
+                      onPressed: () {
+                        _roomBloc.dispatch(
+                          DeleteRoom(id: widget.model.id),
+                        );
+                        if (Navigator.canPop(context)) {
+                          Navigator.pop(context);
                         }
                       },
                     ),

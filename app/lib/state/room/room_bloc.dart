@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:smarthome/models/room.dart';
-import 'room_event.dart';
-import 'room_state.dart';
+import 'package:smarthome/state/room/room_event.dart';
+import 'package:smarthome/state/room/room_state.dart';
 
 class RoomBloc extends Bloc<RoomEvent, RoomState> {
   List<Room> rooms = [];
@@ -21,10 +21,10 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
       final where = rooms.indexWhere((element) => element.id == event.model.id);
       rooms[where] = event.model;
     }
-    if (rooms.isNotEmpty) {
-      yield RoomLoaded();
-    } else {
+    if (rooms.isEmpty) {
       yield RoomEmpty();
+    } else {
+      yield RoomLoaded();
     }
   }
 }
