@@ -12,22 +12,19 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Perfil', style: TextStyle(color: Colors.black)),
+        title: Text('Editar Perfil'),
         leading: IconButton(
           icon: Icon(Icons.close),
-          color: Colors.black,
           onPressed: () {
             if (Navigator.canPop(context)) {
               Navigator.pop(context);
             }
           },
         ),
-        backgroundColor: Theme.of(context).canvasColor,
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.check),
-            color: Colors.black,
             onPressed: () {},
           )
         ],
@@ -42,7 +39,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 children: <Widget>[
                   CircleAvatar(
                     radius: 64.0,
-                    backgroundColor: Colors.blue,
                     backgroundImage: AssetImage('images/human.png'),
                   ),
                   Positioned(
@@ -50,7 +46,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     left: 80,
                     child: IconButton(
                       icon: Icon(Icons.add_circle),
-                      color: Colors.yellow,
                       iconSize: 40.0,
                       onPressed: () {},
                     ),
