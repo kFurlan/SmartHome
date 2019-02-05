@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'registro.dart';
 /*import 'package:flutter_app/LoginPage.dart';*/
@@ -38,4 +39,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 
