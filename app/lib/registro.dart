@@ -16,59 +16,54 @@ class RegisterPage extends StatelessWidget {
       ), // gamb para deixar texto mais para baixo
       TextField(
         decoration: InputDecoration(
+          labelText: "Nome" ,
           border: new OutlineInputBorder(
               borderSide: new BorderSide(color: Colors.yellow)),
-          hintText: "Nome",
         ),
       ),
       Padding(
-        // height: 10.0,
         padding: const EdgeInsets.all(10.0),
       ),
       TextField(
         decoration: InputDecoration(
+          labelText: "Telefone",
           border: new OutlineInputBorder(
               borderSide: new BorderSide(color: Colors.yellow)),
-          hintText: "Telefone",
         ),
       ),
       Padding(
-        // height: 10.0,
         padding: const EdgeInsets.all(10.0),
       ),
       TextField(
         decoration: InputDecoration(
+          labelText: "Data de Nascimento",
           border: new OutlineInputBorder(
               borderSide: new BorderSide(color: Colors.yellow)),
-          hintText: "Data de Nascimento",
         ),
       ),
       Padding(
-        // height: 10.0,
         padding: const EdgeInsets.all(10.0),
       ),
       TextField(
         decoration: InputDecoration(
+          labelText: "Senha",
           border: new OutlineInputBorder(
               borderSide: new BorderSide(color: Colors.yellow)),
-          hintText: "Senha",
         ),
         obscureText: true,
       ),
       Padding(
-        // height: 10.0,
         padding: const EdgeInsets.all(10.0),
       ),
       TextField(
         decoration: InputDecoration(
+          labelText: "Confirme sua senha",
           border: new OutlineInputBorder(
               borderSide: new BorderSide(color: Colors.yellow)),
-          hintText: "Confirme sua senha",
         ),
         obscureText: true,
       ),
       Padding(
-        // height: 10.0,
         padding: const EdgeInsets.all(10.0),
       ),
       RaisedButton(
