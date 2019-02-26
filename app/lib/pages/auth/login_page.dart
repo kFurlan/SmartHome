@@ -96,11 +96,39 @@ class LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                child: RaisedButton(
-                  elevation: 0,
-                  color: Colors.white,
-                  splashColor: Colors.blueGrey,
+                padding: EdgeInsets.fromLTRB(25, 10, 25, 20),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    elevation: 0,
+                    color: Colors.white,
+                    splashColor: Colors.blueGrey,
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    onPressed: () {
+                      // Validate will return true if the form is valid, or false if
+                      // the form is invalid.
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, we want to show a Snackbar
+                        Scaffold.of(context).showSnackBar(
+                            SnackBar(content: Text('Processing Data')));
+                      }
+                    },
+                    child: const Text('Acesso'),
+                  ),
+                ),
+              ),
+              Text(
+                'Ainda não tem uma conta?',
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: FlatButton(
+                  color: Colors.transparent,
+                  splashColor: Colors.transparent,
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: () {
@@ -112,9 +140,12 @@ class LoginPageState extends State<LoginPage> {
                           SnackBar(content: Text('Processing Data')));
                     }
                   },
-                  child: const Text('Acesso'),
+                  child: const Text(
+                    'Cadastre-se',
+                    style: TextStyle(fontSize: 20),
+                  ),
                 ),
-              ),
+              )
             ],
           ),
         ));
