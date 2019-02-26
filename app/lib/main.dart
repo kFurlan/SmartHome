@@ -1,16 +1,20 @@
 
 import 'package:flutter/material.dart';
+
 import 'registro.dart';
 /*import 'package:flutter_app/LoginPage.dart';*/
+
+import 'package:smarthome/pages/auth/login_page.dart';
+
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final appTitle = "Smart Home";
     return MaterialApp(
+
       title: appTitle,
       home: Scaffold(
         appBar: AppBar(
@@ -36,6 +40,7 @@ class MyApp extends StatelessWidget {
               )),
               child: RegisterPage()),
       ),
+
     );
   }
 }
