@@ -52,16 +52,16 @@ class LoginPageState extends State<LoginPage> {
                     color: Colors.white),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(15, 10, 25, 10),
                 child: TextFormField(
                   style: new TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Colors.white),
                   decoration: InputDecoration(
-                    icon: Icon(Icons.account_circle),
+                    icon: Icon(Icons.account_circle, size: 35),
                     hintText: "Usuário",
-                    contentPadding: new EdgeInsets.fromLTRB(15, 15, 5, 5),
+                    contentPadding: new EdgeInsets.fromLTRB(15, 25, 5, 5),
                     border: new OutlineInputBorder(
                         borderSide: new BorderSide(width: 4),
                         borderRadius: new BorderRadius.circular(20.0)),
@@ -74,16 +74,16 @@ class LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(15, 10, 25, 10),
                 child: TextFormField(
                   style: new TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Colors.white),
                   decoration: InputDecoration(
-                    icon: Icon(Icons.lock),
+                    icon: Icon(Icons.lock, size: 35),
                     hintText: "Senha",
-                    contentPadding: new EdgeInsets.fromLTRB(15, 15, 5, 5),
+                    contentPadding: new EdgeInsets.fromLTRB(15, 25, 5, 5),
                     border: new OutlineInputBorder(
                         borderSide: new BorderSide(width: 2),
                         borderRadius: new BorderRadius.circular(20.0)),
