@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'register_page.dart';
+import 'dart:ui';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,143 +10,177 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    // Note: This is a GlobalKey<FormState>, not a GlobalKey<MyCustomFormState>!
-    final _formKey = GlobalKey<FormState>();
-    // Build a Form widget using the _formKey we created above
-    return new Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue[800],
-          elevation: 0,
-        ),
-        body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                // Colors are easy thanks to Flutter's Colors class.
-                Colors.blue[800],
-                Colors.blue[700],
-                Colors.blue[600],
-                Colors.blue[400],
-              ])),
-          child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Smart',
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 100,
-                    fontWeight: FontWeight.w100,
-                    color: Colors.white),
-              ),
-              Text(
-                'Home',
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 25, 10),
-                child: TextFormField(
-                  style: new TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.account_circle, size: 35),
-                    hintText: "Usuário",
-                    contentPadding: new EdgeInsets.fromLTRB(15, 25, 5, 5),
-                    border: new OutlineInputBorder(
-                        borderSide: new BorderSide(width: 4),
-                        borderRadius: new BorderRadius.circular(20.0)),
-                  ),
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(15, 10, 25, 10),
-                child: TextFormField(
-                  style: new TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white),
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.lock, size: 35),
-                    hintText: "Senha",
-                    contentPadding: new EdgeInsets.fromLTRB(15, 25, 5, 5),
-                    border: new OutlineInputBorder(
-                        borderSide: new BorderSide(width: 2),
-                        borderRadius: new BorderRadius.circular(20.0)),
-                  ),
-                  obscureText: true,
-                  validator: (value) {
-                    if (value.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(25, 10, 25, 20),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: RaisedButton(
-                    elevation: 0,
-                    color: Colors.white,
-                    splashColor: Colors.blueGrey,
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    onPressed: () {
-                      // Validate will return true if the form is valid, or false if
-                      // the form is invalid.
-                      if (_formKey.currentState.validate()) {
-                        // If the form is valid, we want to show a Snackbar
-                        Scaffold.of(context).showSnackBar(
-                            SnackBar(content: Text('Processing Data')));
-                      }
-                    },
-                    child: const Text('Acesso'),
+    var _loginFormKey = GlobalKey<FormState>();
+    return LayoutBuilder(builder: (context, viewportConstrains) {
+      return Scaffold(
+        body: SingleChildScrollView(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: viewportConstrains.maxHeight,
+            ),
+            child: Stack(
+              children: <Widget>[
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.blue[800],
+                          Colors.blue[700],
+                          Colors.blue[600],
+                          Colors.blue[400],
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                'Ainda não tem uma conta?',
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: FlatButton(
-                  color: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
-                    );
-                  },
-                  child: const Text(
-                    'Cadastre-se',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: SmartHomeLogo(),
+                    ),
+                    Form(
+                      key: _loginFormKey,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
+                            child: TextFormField(
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                              decoration: InputDecoration(
+                                hintText: "Usuário",
+                                prefixIcon:
+                                    Icon(Icons.account_circle, size: 35),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                              ),
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'O nome do usuário é obrigatório';
+                                }
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
+                            child: TextFormField(
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(Icons.lock, size: 35),
+                                hintText: "Senha",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                              ),
+                              obscureText: true,
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return 'A senha é obrigatória';
+                                }
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8.0),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: RaisedButton(
+                                padding: EdgeInsets.all(16.0),
+                                elevation: 0,
+                                color: Colors.white,
+                                splashColor: Colors.blueGrey,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                onPressed: () {
+                                  if (_loginFormKey.currentState.validate()) {}
+                                },
+                                child: const Text(
+                                  'Acesso',
+                                  style: TextStyle(fontSize: 18.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          FlatButton(
+                            color: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterPage(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Cadastre-se',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              )
-            ],
+              ],
+            ),
           ),
-        ));
+        ),
+      );
+    });
+  }
+}
+
+class SmartHomeLogo extends StatelessWidget {
+  const SmartHomeLogo({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text(
+          'Smart',
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 100,
+            fontWeight: FontWeight.w100,
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          'Home',
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 50,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
   }
 }
