@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smartapp/blocs/auth/authentication_bloc.dart';
-import 'package:smartapp/blocs/auth/authentication_event.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartapp/blocs/room/room_bloc.dart';
 import 'package:smartapp/ui/room/room_info_page.dart';
 import 'package:smartapp/ui/user_profile/profile_info_page.dart';
 
@@ -28,32 +26,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var currentPageIndex = 0;
-
   List<Widget> pages = [
     RoomInfoPage(),
     ProfileInfoPage(),
   ];
-  Widget currentPage;
-  AuthenticationBloc _authBloc;
 
   @override
   void initState() {
-    _authBloc = BlocProvider.of<AuthenticationBloc>(context);
-    this.pages = [
-      Container(
-        child: Center(
-          child: RaisedButton(
-            child: Text('Logout'),
-            onPressed: () {
-              _authBloc.dispatch(LoggedOut());
-              if (Navigator.canPop(context)) {
-                Navigator.pop(context);
-              }
-            },
-          ),
-        ),
+    this.pages =  [
+      BlocProvider<RoomBloc>(
+        bloc: RoomBloc(),
+        child: RoomInfoPage()
       ),
-      Placeholder(color: Colors.red),
+      ProfileInfoPage(),
     ];
     super.initState();
   }

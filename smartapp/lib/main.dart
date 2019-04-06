@@ -80,6 +80,9 @@ class _AppState extends State<App> {
             if (state is AuthenticationUninitialized) {
               return SplashScreen();
             }
+            if (state is AuthenticationLoading) {
+              return LoadingScreen();
+            }
             if (state is AuthenticationAuthenticated) {
               return HomePage();
             }
@@ -91,9 +94,6 @@ class _AppState extends State<App> {
                 ),
                 child: LoginPage(),
               );
-            }
-            if (state is AuthenticationLoading) {
-              return LoadingScreen();
             }
           },
         ),

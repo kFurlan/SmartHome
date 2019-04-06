@@ -17,7 +17,7 @@ class _RoomCreatePageState extends State<RoomInfoPage> {
 
   @override
   void initState() {
-    _roomBloc = BlocProvider.of(context);
+    _roomBloc = BlocProvider.of<RoomBloc>(context);
     super.initState();
   }
 
