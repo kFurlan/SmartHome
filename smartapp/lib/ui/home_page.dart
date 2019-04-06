@@ -3,6 +3,8 @@ import 'package:smartapp/blocs/auth/authentication_bloc.dart';
 import 'package:smartapp/blocs/auth/authentication_event.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartapp/ui/room/room_info_page.dart';
+import 'package:smartapp/ui/user_profile/profile_info_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +29,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var currentPageIndex = 0;
 
-  List<Widget> pages;
+  List<Widget> pages = [
+    RoomInfoPage(),
+    ProfileInfoPage(),
+  ];
   Widget currentPage;
   AuthenticationBloc _authBloc;
 
