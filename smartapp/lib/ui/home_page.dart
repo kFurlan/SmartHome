@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartapp/blocs/room/room_bloc.dart';
+import 'package:smartapp/ui/device_create_page.dart';
 import 'package:smartapp/ui/room/room_info_page.dart';
 import 'package:smartapp/ui/user_profile/profile_info_page.dart';
 
@@ -38,6 +39,7 @@ class _HomePageState extends State<HomePage> {
         bloc: RoomBloc(),
         child: RoomInfoPage()
       ),
+      DeviceCreatePage(),
       ProfileInfoPage(),
     ];
     super.initState();
@@ -61,6 +63,11 @@ class _HomePageState extends State<HomePage> {
             title: Text('Cômodos'),
             backgroundColor: Colors.blue,
             icon: Icon(Icons.airline_seat_individual_suite),
+          ),
+          BottomNavigationBarItem(
+            title: Text('Dispositivos'),
+            backgroundColor: Colors.blue,
+            icon: Icon(Icons.important_devices),
           ),
           BottomNavigationBarItem(
             title: Text('Perfil'),

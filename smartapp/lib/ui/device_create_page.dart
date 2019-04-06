@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DeviceAddPage extends StatefulWidget {
+class DeviceCreatePage extends StatefulWidget {
   @override
-  _DeviceAddPageState createState() => _DeviceAddPageState();
+  _DeviceCreatePageState createState() => _DeviceCreatePageState();
 }
 
-class _DeviceAddPageState extends State<DeviceAddPage> {
+class _DeviceCreatePageState extends State<DeviceCreatePage> {
   String _dropDownValue;
   String _textFormValue;
 
@@ -35,7 +35,7 @@ Widget build(BuildContext context) {
                   maxLength: 60,
                   validator: (String value) {
                     if (value == null || value.isEmpty)
-                      return "O nome do cômodo não pode estar vazio";
+                      return 'Este campo não pode ficar vazio';
                   },
                   onSaved: (String value) {
                     this._textFormValue = value;
