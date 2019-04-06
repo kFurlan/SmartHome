@@ -79,14 +79,16 @@ class _LoginFormState extends State<LoginForm> {
       bloc: _loginBloc,
       builder: (context, state) {
         if (state is LoginFailure) {
-          _onWidgetDidBuild(() {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('${state.error}'),
-                backgroundColor: Colors.red,
-              ),
-            );
-          });
+          _onWidgetDidBuild(
+            () {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('${state.error}'),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            },
+          );
         }
         return Form(
           key: _loginFormKey,

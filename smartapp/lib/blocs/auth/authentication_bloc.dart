@@ -23,12 +23,10 @@ class AuthenticationBloc
       AuthenticationEvent event,
       ) async* {
     if (event is AppStarted) {
+      yield AuthenticationUnauthenticated();
       final bool isSigned = await userRepository.isSigned();
-
       if (isSigned) {
         yield AuthenticationAuthenticated();
-      } else {
-        yield AuthenticationUnauthenticated();
       }
     }
 
