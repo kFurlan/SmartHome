@@ -6,6 +6,7 @@ import 'package:uuid/uuid.dart';
 
 class RoomBloc extends Bloc<RoomEvent, RoomState> {
   List<Room> rooms = [];
+  Uuid uuid = Uuid();
 
   @override
   RoomState get initialState => RoomEmpty();
@@ -15,7 +16,7 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
       RoomState currentState, RoomEvent event) async* {
     if (event is InsertRoom) {
       final room = Room((b) => b
-        ..id = Uuid().v1()
+        ..id = uuid.v1()
         ..name = event.name
         ..type = event.type);
       rooms.add(room);

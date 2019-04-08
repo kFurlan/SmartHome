@@ -26,6 +26,8 @@ class AuthenticationBloc
       final bool isSigned = await userRepository.isSigned();
       if (isSigned) {
         yield AuthenticationAuthenticated();
+      } else {
+        yield AuthenticationUnauthenticated();
       }
     }
 

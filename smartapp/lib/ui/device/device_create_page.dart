@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartapp/blocs/device/device_bloc.dart';
+import 'package:smartapp/blocs/device/device_event.dart';
 
 class DeviceCreatePage extends StatefulWidget {
   @override
@@ -6,8 +9,17 @@ class DeviceCreatePage extends StatefulWidget {
 }
 
 class _DeviceCreatePageState extends State<DeviceCreatePage> {
+
+  DeviceBloc _deviceBloc;
   String _dropDownValue;
   String _textFormValue;
+  final _deviceCreateKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _deviceBloc = BlocProvider.of<DeviceBloc>(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +40,7 @@ class _DeviceCreatePageState extends State<DeviceCreatePage> {
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Form(
+            key: _deviceCreateKey,
             child: Column(
               children: <Widget>[
                 TextFormField(
@@ -89,7 +102,20 @@ class _DeviceCreatePageState extends State<DeviceCreatePage> {
                     child: RaisedButton(
                       padding: EdgeInsets.all(16),
                       child: Text('CADASTRAR'),
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_deviceCreateKey.currentState.validate()) {
+                          _deviceCreateKey.currentState.save();
+                          _deviceBloc.dispatch(
+                            InsertDevice(
+                              name: this._textFormValue,
+                              type: this._dropDownValue,
+                            ),
+                          );
+                          if (Navigator.canPop(context)) {
+                            Navigator.pop(context);
+                          }
+                        }
+                      },
                     ),
                   ),
                 ),
