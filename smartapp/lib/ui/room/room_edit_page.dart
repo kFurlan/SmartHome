@@ -111,10 +111,11 @@ class RoomEditPageState extends State<RoomEditPage> {
                       onPressed: () {
                         if (_roomCreateKey.currentState.validate()) {
                           _roomCreateKey.currentState.save();
-                          final _model = Room.withId(
-                              id: widget.model.id,
-                              name: _roomName,
-                              type: _roomType);
+                          final _model = Room((b) =>
+                          b
+                            ..id = widget.model.id
+                            ..name = _roomName
+                            ..type = _roomType);
                           _roomBloc.dispatch(
                             EditRoom(model: _model),
                           );

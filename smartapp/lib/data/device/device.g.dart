@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'room.dart';
+part of 'device.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Room> _$roomSerializer = new _$RoomSerializer();
+Serializer<Device> _$deviceSerializer = new _$DeviceSerializer();
 
-class _$RoomSerializer implements StructuredSerializer<Room> {
+class _$DeviceSerializer implements StructuredSerializer<Device> {
   @override
-  final Iterable<Type> types = const [Room, _$Room];
+  final Iterable<Type> types = const [Device, _$Device];
   @override
-  final String wireName = 'Room';
+  final String wireName = 'Device';
 
   @override
-  Iterable serialize(Serializers serializers, Room object,
+  Iterable serialize(Serializers serializers, Device object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'id',
@@ -30,9 +30,9 @@ class _$RoomSerializer implements StructuredSerializer<Room> {
   }
 
   @override
-  Room deserialize(Serializers serializers, Iterable serialized,
+  Device deserialize(Serializers serializers, Iterable serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new RoomBuilder();
+    final result = new DeviceBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -59,7 +59,7 @@ class _$RoomSerializer implements StructuredSerializer<Room> {
   }
 }
 
-class _$Room extends Room {
+class _$Device extends Device {
   @override
   final String id;
   @override
@@ -67,32 +67,32 @@ class _$Room extends Room {
   @override
   final String type;
 
-  factory _$Room([void updates(RoomBuilder b)]) =>
-      (new RoomBuilder()..update(updates)).build();
+  factory _$Device([void updates(DeviceBuilder b)]) =>
+      (new DeviceBuilder()..update(updates)).build();
 
-  _$Room._({this.id, this.name, this.type}) : super._() {
+  _$Device._({this.id, this.name, this.type}) : super._() {
     if (id == null) {
-      throw new BuiltValueNullFieldError('Room', 'id');
+      throw new BuiltValueNullFieldError('Device', 'id');
     }
     if (name == null) {
-      throw new BuiltValueNullFieldError('Room', 'name');
+      throw new BuiltValueNullFieldError('Device', 'name');
     }
     if (type == null) {
-      throw new BuiltValueNullFieldError('Room', 'type');
+      throw new BuiltValueNullFieldError('Device', 'type');
     }
   }
 
   @override
-  Room rebuild(void updates(RoomBuilder b)) =>
+  Device rebuild(void updates(DeviceBuilder b)) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  RoomBuilder toBuilder() => new RoomBuilder()..replace(this);
+  DeviceBuilder toBuilder() => new DeviceBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Room &&
+    return other is Device &&
         id == other.id &&
         name == other.name &&
         type == other.type;
@@ -105,7 +105,7 @@ class _$Room extends Room {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Room')
+    return (newBuiltValueToStringHelper('Device')
           ..add('id', id)
           ..add('name', name)
           ..add('type', type))
@@ -113,24 +113,30 @@ class _$Room extends Room {
   }
 }
 
-class RoomBuilder implements Builder<Room, RoomBuilder> {
-  _$Room _$v;
+class DeviceBuilder implements Builder<Device, DeviceBuilder> {
+  _$Device _$v;
 
   String _id;
+
   String get id => _$this._id;
+
   set id(String id) => _$this._id = id;
 
   String _name;
+
   String get name => _$this._name;
+
   set name(String name) => _$this._name = name;
 
   String _type;
+
   String get type => _$this._type;
+
   set type(String type) => _$this._type = type;
 
-  RoomBuilder();
+  DeviceBuilder();
 
-  RoomBuilder get _$this {
+  DeviceBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
       _name = _$v.name;
@@ -141,21 +147,21 @@ class RoomBuilder implements Builder<Room, RoomBuilder> {
   }
 
   @override
-  void replace(Room other) {
+  void replace(Device other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Room;
+    _$v = other as _$Device;
   }
 
   @override
-  void update(void updates(RoomBuilder b)) {
+  void update(void updates(DeviceBuilder b)) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Room build() {
-    final _$result = _$v ?? new _$Room._(id: id, name: name, type: type);
+  _$Device build() {
+    final _$result = _$v ?? new _$Device._(id: id, name: name, type: type);
     replace(_$result);
     return _$result;
   }

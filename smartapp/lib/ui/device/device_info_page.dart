@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartapp/ui/device_create_page.dart';
+import 'package:smartapp/blocs/device/device_bloc.dart';
+import 'package:smartapp/blocs/device/device_state.dart';
+import 'package:smartapp/data/device/device.dart';
+import 'package:smartapp/ui/device/device_create_page.dart';
+import 'package:smartapp/ui/device/device_edit_page.dart';
 
 class DeviceInfoPage extends StatefulWidget {
   @override
@@ -20,7 +24,7 @@ class _DeviceCreatePageState extends State<DeviceInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de dispositivos'),
+        title: Text('Dispositivos'),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
@@ -40,37 +44,38 @@ class _DeviceCreatePageState extends State<DeviceInfoPage> {
         ],
       ),
       body: BlocBuilder(
-          bloc: _deviceBloc,
-          builder: (BuildContext context, DeviceState state) {
-            if (state is DeviceEmpty) {
-              return Center(
-                child: Text(
-                  'Nenhum dispositivo encontrado',
-                  style: TextStyle(),
-                ),
-              );
-            } else if (state is DeviceLoaded) {
-              return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _deviceBloc.devices.length,
-                  itemBuilder: (BuildContext context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4.0, horizontal: 2.0),
-                      child: _buildDeviceListItem(_deviceBloc[index], context),
-                    );
-                  });
-            } else {
-              return Center(
-                child: Text(
-                  'Erro ao carregar dispositivos',
-                  styles: TextStyle(
-                    fontSize: 48.0
-                  ),
-                ),
-              );
-            }
-          }),
+        bloc: _deviceBloc,
+        builder: (BuildContext context, DeviceState state) {
+          if (state is DeviceEmpty) {
+            return Center(
+              child: Text(
+                'Nenhum dispositivo cadastrado.',
+              ),
+            );
+          } else if (state is DeviceLoaded) {
+            return ListView.builder(
+                shrinkWrap: true,
+                itemCount: _deviceBloc.devices.length,
+                itemBuilder: (BuildContext context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                      horizontal: 2.0,
+                    ),
+                    child: _buildDeviceListItem(
+                        _deviceBloc.devices[index], context),
+                  );
+                });
+          } else {
+            return Center(
+              child: Text(
+                'Erro ao carregar dispositivos',
+                style: TextStyle(fontSize: 48.0),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -118,7 +123,9 @@ class _DeviceCreatePageState extends State<DeviceInfoPage> {
                           MaterialPageRoute(
                             builder: (context) => BlocProvider<DeviceBloc>(
                               bloc: _deviceBloc,
-                              child: DeviceEditPage(model: model),
+                              child: DeviceEditPage(
+                                model: model,
+                              ),
                             ),
                           ),
                         );

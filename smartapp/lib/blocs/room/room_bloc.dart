@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:smartapp/blocs/room/room_event.dart';
 import 'package:smartapp/blocs/room/room_state.dart';
 import 'package:smartapp/data/room/room.dart';
+import 'package:uuid/uuid.dart';
 
 class RoomBloc extends Bloc<RoomEvent, RoomState> {
   List<Room> rooms = [];
@@ -13,8 +14,12 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
   Stream<RoomState> mapEventToState(
       RoomState currentState, RoomEvent event) async* {
     if (event is InsertRoom) {
-      final model = Room.create(name: event.name, type: event.type);
-      rooms.add(model);
+      final room = Room((b) =>
+      b
+        ..id = Uuid().v1()
+        ..name = event.name
+        ..type = event.type);
+      rooms.add(room);
     } else if (event is DeleteRoom) {
       rooms.removeWhere((element) => element.id == event.id);
     } else if (event is EditRoom) {

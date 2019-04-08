@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartapp/blocs/device/device_bloc.dart';
 import 'package:smartapp/blocs/room/room_bloc.dart';
-import 'package:smartapp/ui/device_create_page.dart';
+import 'package:smartapp/ui/device/device_info_page.dart';
 import 'package:smartapp/ui/room/room_info_page.dart';
 import 'package:smartapp/ui/user_profile/profile_info_page.dart';
 
@@ -34,12 +35,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    this.pages =  [
+    this.pages = [
       BlocProvider<RoomBloc>(
         bloc: RoomBloc(),
-        child: RoomInfoPage()
+        child: RoomInfoPage(),
       ),
-      DeviceCreatePage(),
+      BlocProvider<DeviceBloc>(
+        bloc: DeviceBloc(),
+        child: DeviceInfoPage(),
+      ),
       ProfileInfoPage(),
     ];
     super.initState();

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartapp/blocs/device/device_bloc.dart';
+import 'package:smartapp/blocs/device/device_event.dart';
+import 'package:smartapp/data/device/device.dart';
 
 class DeviceEditPage extends StatefulWidget {
   final Device model;
@@ -14,7 +17,7 @@ class DeviceEditPageState extends State<DeviceEditPage> {
   DeviceBloc _deviceBloc;
   String _deviceType;
   String _deviceName;
-  final DeviceCreateKey = GlobalKey<FormState>()
+  final _deviceCreateKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -35,8 +38,7 @@ class DeviceEditPageState extends State<DeviceEditPage> {
               if (Navigator.canPop(context)) {
                 Navigator.pop(context);
               }
-            }
-        ),
+            }),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
@@ -55,9 +57,7 @@ class DeviceEditPageState extends State<DeviceEditPage> {
                 onSaved: (String value) {
                   this._deviceName = value;
                 },
-                decoration: InputDecoration(
-                  labelText: 'Nome do dispositivo'
-                ),
+                decoration: InputDecoration(labelText: 'Nome do dispositivo'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
@@ -67,10 +67,11 @@ class DeviceEditPageState extends State<DeviceEditPage> {
                   onPressed: () {
                     if (_deviceCreateKey.currentState.validate()) {
                       _deviceCreateKey.currentState.save();
-                      final _model = Device.withId(
-                          id: widget.model.id,
-                          name: _deviceName,
-                          type: _deviceType);
+                      final _model = Device((b) =>
+                      b
+                        ..id = widget.model.id
+                        ..name = _deviceName
+                        ..type = _deviceType);
                       _deviceBloc.dispatch(
                         EditDevice(model: _model),
                       );
@@ -91,11 +92,9 @@ class DeviceEditPageState extends State<DeviceEditPage> {
                     textColor: Colors.white,
                     child: Text('EXCLUIR'),
                     onPressed: () {
-                      _deviceBloc.dispatch(
-                        DeleteDevice(id: widget.model.id)
-                      );
-                      if(Navigator.canPop(context)) {
-                        Navigator.pop(context)
+                      _deviceBloc.dispatch(DeleteDevice(id: widget.model.id));
+                      if (Navigator.canPop(context)) {
+                        Navigator.pop(context);
                       }
                     },
                   ),
