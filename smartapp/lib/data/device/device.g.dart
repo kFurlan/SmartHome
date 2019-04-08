@@ -117,21 +117,15 @@ class DeviceBuilder implements Builder<Device, DeviceBuilder> {
   _$Device _$v;
 
   String _id;
-
   String get id => _$this._id;
-
   set id(String id) => _$this._id = id;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
   String _type;
-
   String get type => _$this._type;
-
   set type(String type) => _$this._type = type;
 
   DeviceBuilder();
