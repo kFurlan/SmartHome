@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:smartapp/data/user_repository.dart';
-
+import 'package:meta/meta.dart';
 import 'package:smartapp/blocs/auth/authentication_event.dart';
 import 'package:smartapp/blocs/auth/authentication_state.dart';
+import 'package:smartapp/data/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -19,9 +18,9 @@ class AuthenticationBloc
 
   @override
   Stream<AuthenticationState> mapEventToState(
-      AuthenticationState currentState,
-      AuthenticationEvent event,
-      ) async* {
+    AuthenticationState currentState,
+    AuthenticationEvent event,
+  ) async* {
     if (event is AppStarted) {
       yield AuthenticationUnauthenticated();
       final bool isSigned = await userRepository.isSigned();

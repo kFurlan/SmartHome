@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 abstract class RegisterEvent extends Equatable {
   RegisterEvent([List props = const []]) : super(props);

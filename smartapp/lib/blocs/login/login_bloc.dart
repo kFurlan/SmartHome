@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:smartapp/data/user_repository.dart';
-
+import 'package:meta/meta.dart';
 import 'package:smartapp/blocs/auth/authentication.dart';
 import 'package:smartapp/blocs/login/login.dart';
+import 'package:smartapp/data/user_repository.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;

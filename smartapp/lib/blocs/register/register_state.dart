@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 abstract class RegisterState extends Equatable {
   RegisterState([List props = const []]) : super(props);

@@ -122,11 +122,11 @@ class _DeviceCreatePageState extends State<DeviceInfoPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => BlocProvider<DeviceBloc>(
-                              bloc: _deviceBloc,
-                              child: DeviceEditPage(
-                                model: model,
-                              ),
-                            ),
+                                  bloc: _deviceBloc,
+                                  child: DeviceEditPage(
+                                    model: model,
+                                  ),
+                                ),
                           ),
                         );
                       },

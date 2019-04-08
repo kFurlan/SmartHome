@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:smartapp/blocs/auth/authentication.dart';
 import 'package:smartapp/blocs/login/login.dart';
 import 'package:smartapp/blocs/register/register.dart';
@@ -9,7 +10,6 @@ import 'package:smartapp/data/user_repository.dart';
 import 'package:smartapp/ui/home_page.dart';
 import 'package:smartapp/ui/login_page.dart';
 import 'package:smartapp/ui/register_page.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override

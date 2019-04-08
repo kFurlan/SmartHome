@@ -1,10 +1,9 @@
 import 'dart:async';
 
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:smartapp/data/user_repository.dart';
-
+import 'package:meta/meta.dart';
 import 'package:smartapp/blocs/register/register.dart';
+import 'package:smartapp/data/user_repository.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository userRepository;

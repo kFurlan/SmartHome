@@ -6,6 +6,7 @@ import 'package:smartapp/data/room/room.dart';
 
 class RoomEditPage extends StatefulWidget {
   final Room model;
+
   const RoomEditPage({@required this.model});
 
   @override
@@ -111,8 +112,7 @@ class RoomEditPageState extends State<RoomEditPage> {
                       onPressed: () {
                         if (_roomCreateKey.currentState.validate()) {
                           _roomCreateKey.currentState.save();
-                          final _model = Room((b) =>
-                          b
+                          final _model = Room((b) => b
                             ..id = widget.model.id
                             ..name = _roomName
                             ..type = _roomType);

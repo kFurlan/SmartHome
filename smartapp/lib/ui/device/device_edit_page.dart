@@ -67,8 +67,7 @@ class DeviceEditPageState extends State<DeviceEditPage> {
                   onPressed: () {
                     if (_deviceCreateKey.currentState.validate()) {
                       _deviceCreateKey.currentState.save();
-                      final _model = Device((b) =>
-                      b
+                      final _model = Device((b) => b
                         ..id = widget.model.id
                         ..name = _deviceName
                         ..type = _deviceType);

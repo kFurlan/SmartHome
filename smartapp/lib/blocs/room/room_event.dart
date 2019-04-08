@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 import 'package:smartapp/data/room/room.dart';
 
 abstract class RoomEvent extends Equatable {
@@ -9,6 +9,7 @@ abstract class RoomEvent extends Equatable {
 class InsertRoom extends RoomEvent {
   final String name;
   final String type;
+
   InsertRoom({
     @required this.name,
     @required this.type,
@@ -17,6 +18,7 @@ class InsertRoom extends RoomEvent {
 
 class DeleteRoom extends RoomEvent {
   final String id;
+
   DeleteRoom({
     @required this.id,
   }) : super([id]);
@@ -24,5 +26,6 @@ class DeleteRoom extends RoomEvent {
 
 class EditRoom extends RoomEvent {
   final Room model;
+
   EditRoom({@required this.model}) : super([model]);
 }

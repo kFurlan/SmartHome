@@ -14,8 +14,7 @@ class RoomBloc extends Bloc<RoomEvent, RoomState> {
   Stream<RoomState> mapEventToState(
       RoomState currentState, RoomEvent event) async* {
     if (event is InsertRoom) {
-      final room = Room((b) =>
-      b
+      final room = Room((b) => b
         ..id = Uuid().v1()
         ..name = event.name
         ..type = event.type);

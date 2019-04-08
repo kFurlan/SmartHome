@@ -9,11 +9,10 @@ class _DeviceCreatePageState extends State<DeviceCreatePage> {
   String _dropDownValue;
   String _textFormValue;
 
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
         title: Text('Cadastrar Dispositivo'),
         leading: IconButton(
           icon: Icon(Icons.close),
@@ -90,8 +89,7 @@ Widget build(BuildContext context) {
                     child: RaisedButton(
                       padding: EdgeInsets.all(16),
                       child: Text('CADASTRAR'),
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ),
@@ -99,8 +97,7 @@ Widget build(BuildContext context) {
             ),
           ),
         ),
-  ),
-  );
-}
-
+      ),
+    );
+  }
 }

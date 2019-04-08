@@ -22,7 +22,7 @@ class UserRepository {
     await auth.signOut();
   }
 
-   Future<bool> isSigned() async {
+  Future<bool> isSigned() async {
     return await auth.currentUser() != null;
   }
 }
